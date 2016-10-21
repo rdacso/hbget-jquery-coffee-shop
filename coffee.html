@@ -50,20 +50,32 @@
     var myRevenueMessage = document.getElementById("revenue");
     //sets attribute jpg to id coffee_image
     $('img#coffee_image').attr('src','static/coffee_beans.jpg');
-    
+
+    var myEspresso = document.getElementById("espresso");
+    var myLatte = document.getElementById("latte");
+    var hotChocolate = document.getElementById("hot-chocolate");
     //function that, when called, changes the image to a coffee machine.
     function changeImage() {
         $('img#coffee_image').attr('src','static/coffee_machine.jpg');
     }
 
-    // function that, when called, starts the time out function which changes the image from machine, to cup, and back to beans.
+    // function that, when called, starts the time out function which changes the image from machine, to cup, and back to beans. Also appends drinktype to drinkorder array.
     function makeCoffee(drinkType) {
          setTimeout(function() {$('img#coffee_image').attr('src','static/coffee_mug.jpg')}, 500);
          setTimeout(function() {$('img#coffee_image').attr('src','static/coffee_beans.jpg')}, 1500);
          drinksOrder.push(drinkType);
          console.log(drinksOrder);
-    }
 
+    }
+    //event handler that pushes espresso to array drinksorder when espresso button is clicked
+
+    $('#espresso').on('click',function() { return makeCoffee('espresso');});
+
+    //event handler that pushes latte to array drinksorder when latte button is clicked
+    $('#latte').on('click',function() { return makeCoffee('latte');});
+
+    //event handler that pushes hot chocolate to array drinksorder when hot chocolate button is clicked
+    $('#hot-chocolate').on('click',function() { return makeCoffee('hot-chocolate');});
 
     //event handler that calls the changeImage function when the image is clicked
     $('#coffee_image').on('click', changeImage);
