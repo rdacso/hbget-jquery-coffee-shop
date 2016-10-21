@@ -46,26 +46,30 @@
 <script src="https://code.jquery.com/jquery.js"></script>
 <script>
     "use strict";
+    var drinksOrder = []
     var myRevenueMessage = document.getElementById("revenue");
-
+    //sets attribute jpg to id coffee_image
     $('img#coffee_image').attr('src','static/coffee_beans.jpg');
     
-
+    //function that, when called, changes the image to a coffee machine.
     function changeImage() {
         $('img#coffee_image').attr('src','static/coffee_machine.jpg');
-
     }
 
-     
-    function makeCoffee() {
+    // function that, when called, starts the time out function which changes the image from machine, to cup, and back to beans.
+    function makeCoffee(drinkType) {
          setTimeout(function() {$('img#coffee_image').attr('src','static/coffee_mug.jpg')}, 500);
          setTimeout(function() {$('img#coffee_image').attr('src','static/coffee_beans.jpg')}, 1500);
+         drinksOrder.push(drinkType);
+         console.log(drinksOrder);
     }
 
 
+    //event handler that calls the changeImage function when the image is clicked
     $('#coffee_image').on('click', changeImage);
 
-    $('#coffee_image').on('click', function() { return makeCoffee();});
+    //event handler that calls makeCoffee function after the click event handler has run.
+    $('#coffee_image').on('click', function() { return makeCoffee('brew');});
 
 
 </script>
